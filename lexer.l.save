@@ -1,0 +1,23 @@
+%{
+#include "y.tab.h"
+#include <stdlib.h>
+%}
+
+%option noyywrap
+
+%%
+hello      { return HELLO; }
+exit       { return EXITCMD; }
+[0-9]+     { yylval.ival = atoi(yytext); return NUMBER; }
+[ \t\r]+   { }
+
+"+"        { return '+'; }
+"-"        { return '-'; }
+"*"        { return '*'; }
+"/"        { return '/'; }
+"("        { return '('; }
+")"        { return ')'; }
+
+\n { return '\n'; }
+.          { }
+%%
